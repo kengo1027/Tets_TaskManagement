@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow - タスク管理</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>TaskFlow</h1>
+      <p class="subtitle">Kintone風 タスク管理アプリ</p>
+    </div>
+    <div class="summary" id="summary"></div>
+  </header>
+
+  <main>
+    <section class="controls card">
+      <form id="taskForm" class="task-form">
+        <input id="title" placeholder="タスク名" required maxlength="60" />
+        <input id="assignee" placeholder="担当者" maxlength="30" />
+        <input id="dueDate" type="date" />
+        <select id="priority">
+          <option value="high">高</option>
+          <option value="medium" selected>中</option>
+          <option value="low">低</option>
+        </select>
+        <textarea id="description" rows="2" placeholder="詳細"></textarea>
+        <button type="submit">追加</button>
+      </form>
+      <div class="filters">
+        <input id="search" placeholder="検索（タイトル/担当者）" />
+        <select id="priorityFilter">
+          <option value="all">優先度: すべて</option>
+          <option value="high">優先度: 高</option>
+          <option value="medium">優先度: 中</option>
+          <option value="low">優先度: 低</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="board" id="board"></section>
+  </main>
+
+  <template id="taskCardTemplate">
+    <article class="task-card" draggable="true">
+      <div class="card-header">
+        <h3 class="task-title"></h3>
+        <span class="priority"></span>
+      </div>
+      <p class="task-description"></p>
+      <div class="meta"></div>
+      <div class="actions">
+        <button class="move-left">←</button>
+        <button class="move-right">→</button>
+        <button class="delete danger">削除</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
